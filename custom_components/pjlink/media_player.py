@@ -199,7 +199,10 @@ class PjLinkDevice(MediaPlayerEntity):
                 projector.set_power("off")
         except ProjectorError as err:
             if str(err) == "unavailable time":
-                _LOGGER.debug("Projector unavailable (power cycling): %s", err)
+                _LOGGER.info(
+                    "Projector cannot turn off right now (busy power cycling): %s",
+                    err,
+                )
             elif str(err) == ERR_PROJECTOR_UNAVAILABLE:
                 _LOGGER.warning("Projector is unavailable: %s", err)
             else:
@@ -214,7 +217,10 @@ class PjLinkDevice(MediaPlayerEntity):
                 projector.set_power("on")
         except ProjectorError as err:
             if str(err) == "unavailable time":
-                _LOGGER.debug("Projector unavailable (power cycling): %s", err)
+                _LOGGER.info(
+                    "Projector cannot turn on right now (busy power cycling): %s",
+                    err,
+                )
             elif str(err) == ERR_PROJECTOR_UNAVAILABLE:
                 _LOGGER.warning("Projector is unavailable: %s", err)
             else:
@@ -229,7 +235,10 @@ class PjLinkDevice(MediaPlayerEntity):
                 projector.set_mute(MUTE_AUDIO, mute)
         except ProjectorError as err:
             if str(err) == "unavailable time":
-                _LOGGER.debug("Projector unavailable (power cycling): %s", err)
+                _LOGGER.info(
+                    "Projector cannot change mute state right now (busy power cycling): %s",
+                    err,
+                )
             elif str(err) == ERR_PROJECTOR_UNAVAILABLE:
                 _LOGGER.warning("Projector is unavailable: %s", err)
             else:
@@ -245,7 +254,10 @@ class PjLinkDevice(MediaPlayerEntity):
                 projector.set_input(*source)
         except ProjectorError as err:
             if str(err) == "unavailable time":
-                _LOGGER.debug("Projector unavailable (power cycling): %s", err)
+                _LOGGER.info(
+                    "Projector cannot select source right now (busy power cycling): %s",
+                    err,
+                )
             elif str(err) == ERR_PROJECTOR_UNAVAILABLE:
                 _LOGGER.warning("Projector is unavailable: %s", err)
             else:
